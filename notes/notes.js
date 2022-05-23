@@ -80,6 +80,17 @@
 // const form = document.querySelector('.new-item-form') as HTMLFormElement;
 
 //
+// *** Interfaces ***
+//
+// Allow you to enforce structure on a class or object: you can describe what properties, methods, types of methods, types of properties etc can be used
+// Note: interfaces are not classes or objects - they don't produce anything.
+
+//
+// *** Generics ***
+//
+// Re-usable blocks of code, which can be used with different types
+
+//
 // *** File Structuring ***
 //
 // Compiling to different folders: use tsc --init + 'root' (source folder/directory), 'outDir' (target directory)

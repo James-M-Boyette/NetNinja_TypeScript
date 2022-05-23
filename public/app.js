@@ -66,3 +66,25 @@ form.addEventListener("submit", (e) => {
     }
     list.render(doc, type.value, "end");
 });
+// *** Generics ***
+// const addUID = (obj: object) => { // Problem #1
+// const addUID = <T>(obj: T) => { // Problem #2
+const addUID = (obj) => {
+    let uid = Math.floor(Math.random() * 100);
+    return Object.assign(Object.assign({}, obj), { uid });
+};
+let docThree = addUID({ name: "Jessica", age: 36 });
+console.log(docThree);
+console.log(docThree.name); // .name will throw a TS error on its own ... because
+// Now, so long as we also declare the type (here, we're saying that our data is an object with <object>), it can be passed in
+const docFour = {
+    uid: 1,
+    resourceName: "full name",
+    data: { fName: "Luke", lName: "Skywalker" },
+};
+const docFive = {
+    uid: 2,
+    resourceName: "shoppingList",
+    data: ["apples", "milk", "cleaning supplies"],
+};
+console.log(docFour, docFive);

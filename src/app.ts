@@ -102,3 +102,42 @@ form.addEventListener("submit", (e: Event) => {
 
 	list.render(doc, type.value, "end");
 });
+
+// *** Generics ***
+// const addUID = (obj: object) => { // Problem #1
+// const addUID = <T>(obj: T) => { // Problem #2
+const addUID = <T extends object>(obj: T) => {
+	let uid = Math.floor(Math.random() * 100);
+	return { ...obj, uid };
+};
+
+let docThree = addUID({ name: "Jessica", age: 36 });
+
+console.log(docThree);
+console.log(docThree.name); // .name will throw a TS error on its own ... because
+// 1. TS doesn't know what properties were passed *into* addUID (without additional instructions), and therefore doesn't know whether a 'name' or 'age' property do, for certain, exist. In order to capture said type info, we need to use <T> and T ... but this creates a problem
+// 2. Now we're not specifying a type - only telling TS to remember *whatever* is passed in. In order to make TS opinionated about this function again we need to also stipulate that whatever is passed in *extend* the type we're expecting - in this case, an object
+// Note: you can get very specific, here - isntead of '<T extends object>' you could say '<T extends {name; string}>', requiring an object with 1) a 'name' property that's 2) storing a string
+
+// *** Generics with Interfaces:
+
+// If we create a resource that we want to have *some* flexibility - say have it be able to accept different kinds of data (in object form, string form etc), we can pass in the type using Generic syntax:
+interface Resource<T> {
+	uid: number;
+	resourceName: string;
+	data: T;
+}
+// Now, so long as we also declare the type (here, we're saying that our data is an object with <object>), it can be passed in
+const docFour: Resource<object> = {
+	uid: 1,
+	resourceName: "full name",
+	data: { fName: "Luke", lName: "Skywalker" },
+};
+
+const docFive: Resource<string[]> = {
+	uid: 2,
+	resourceName: "shoppingList",
+	data: ["apples", "milk", "cleaning supplies"],
+};
+
+console.log(docFour, docFive);
