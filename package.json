@@ -1,0 +1,25 @@
+{
+	"dependencies": {
+		"nodemon": "^2.0.16"
+	},
+	"name": "net_ninja__typescript",
+	"description": "baby's first typescript",
+	"version": "1.0.0",
+	"main": "app.js",
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"serve": "nodemon ./public/app.js",
+		"tsc": "tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sou7hernsaint/NetNinja_TypeScript.git"
+	},
+	"author": "James Boyette",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/sou7hernsaint/NetNinja_TypeScript/issues"
+	},
+	"homepage": "https://github.com/sou7hernsaint/NetNinja_TypeScript#readme"
+}
