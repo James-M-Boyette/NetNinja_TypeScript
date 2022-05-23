@@ -91,6 +91,16 @@
 // Re-usable blocks of code, which can be used with different types
 
 //
+// *** Enums ***
+//
+// Special type that allow us to store a set of constants or key words, and associate them with a numeric value
+
+//
+// *** Tuples ***
+//
+// Unlike other types of data, Tuples fix data in place once they've been initialized
+
+//
 // *** File Structuring ***
 //
 // Compiling to different folders: use tsc --init + 'root' (source folder/directory), 'outDir' (target directory)

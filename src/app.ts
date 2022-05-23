@@ -121,7 +121,7 @@ console.log(docThree.name); // .name will throw a TS error on its own ... becaus
 
 // *** Generics with Interfaces:
 
-// If we create a resource that we want to have *some* flexibility - say have it be able to accept different kinds of data (in object form, string form etc), we can pass in the type using Generic syntax:
+// If we create an interface that we want to have *some* flexibility - say have it be able to accept different kinds of data (in object form, string form etc), we can pass in the type using Generic syntax:
 interface Resource<T> {
 	uid: number;
 	resourceName: string;
@@ -141,3 +141,34 @@ const docFive: Resource<string[]> = {
 };
 
 console.log(docFour, docFive);
+
+// *** Enums
+//
+// If you want to associate numbers to categories etc in a way that's more manageable - say IDs for set elements of media - you can use enums. Here, we have five types of media ... and instead of having to remember that 'film' is our third ResourceType, we can simply refer to it in our variable as ResourceType.FILM ... Note that what's actually stored is the number/index place
+enum ResourceType {
+	BOOK,
+	SONG,
+	FILM,
+	AUDIOPLAY,
+	PAINTING,
+}
+
+interface FilmResource<T> {
+	uid: number;
+	resourceType: ResourceType;
+	data: T;
+}
+
+const docSeven: FilmResource<object> = {
+	uid: 1,
+	resourceType: ResourceType.PAINTING,
+	data: { painter: "Money", work: "Water Lillies" },
+};
+
+const docEight: FilmResource<string[]> = {
+	uid: 12,
+	resourceType: ResourceType.FILM,
+	data: ["Star Wars"],
+};
+
+console.log(docSeven, docEight);

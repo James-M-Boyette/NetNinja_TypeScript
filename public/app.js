@@ -88,3 +88,25 @@ const docFive = {
     data: ["apples", "milk", "cleaning supplies"],
 };
 console.log(docFour, docFive);
+// *** Enums
+//
+// If you want to associate numbers to categories etc in a way that's more manageable - say IDs for set elements of media - you can use enums. Here, we have five types of media ... and instead of having to remember that 'film' is our third ResourceType, we can simply refer to it in our variable as ResourceType.FILM ... Note that what's actually stored is the number/index place
+var ResourceType;
+(function (ResourceType) {
+    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
+    ResourceType[ResourceType["SONG"] = 1] = "SONG";
+    ResourceType[ResourceType["FILM"] = 2] = "FILM";
+    ResourceType[ResourceType["AUDIOPLAY"] = 3] = "AUDIOPLAY";
+    ResourceType[ResourceType["PAINTING"] = 4] = "PAINTING";
+})(ResourceType || (ResourceType = {}));
+const docSeven = {
+    uid: 1,
+    resourceType: ResourceType.PAINTING,
+    data: { painter: "Money", work: "Water Lillies" },
+};
+const docEight = {
+    uid: 12,
+    resourceType: ResourceType.FILM,
+    data: ["Star Wars"],
+};
+console.log(docSeven, docEight);
