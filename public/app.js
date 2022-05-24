@@ -58,11 +58,22 @@ const list = new ListTemplate(ul);
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     let doc;
+    let values = [
+        tofrom.value,
+        details.value,
+        amount.valueAsNumber,
+    ]; // Here's our tuple, which has the benefit of drying our code out
     if (type.value === "invoice") {
-        doc = new ModernInvoice(tofrom.value, details.value, amount.valueAsNumber);
+        // doc = new ModernInvoice(
+        // 	tofrom.value,
+        // 	details.value,
+        // 	amount.valueAsNumber
+        // ); // Note: this would be better as a tuple
+        doc = new ModernInvoice(...values); // ... So now we're using a tuple
     }
     else {
-        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+        // doc = new Payment(tofrom.value, details.value, amount.valueAsNumber); // Note: this would be better as a tuple
+        doc = new Payment(...values); // ... So now we're using a tuple
     }
     list.render(doc, type.value, "end");
 });
@@ -110,3 +121,11 @@ const docEight = {
     data: ["Star Wars"],
 };
 console.log(docSeven, docEight);
+// *** Tuples
+//
+let vanillaArray = ["Ryu", 25, true]; // Here, though TS infers that 'vanillaArray' can only be an array of numbers or strings, we can still change any of the values (change the first one to "Chun-Li", or the second one to "25")
+let tuple = ["Ken", 23, true]; // Note: have to declare the type with an array for a tuple
+// None of the following can work because though we've defined our variable as an array that can receive strings, numbers and booleans,
+tuple[1] = false;
+tuple[2] = "Dalseem";
+tuple[3] = 1000;

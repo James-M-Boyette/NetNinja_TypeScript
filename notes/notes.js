@@ -98,7 +98,7 @@
 //
 // *** Tuples ***
 //
-// Unlike other types of data, Tuples fix data in place once they've been initialized
+// Unlike other types of data, Tuples fix data types in place once they've been initialized (so if the first index place of an array is a string, it must always be a string there-after)
 
 //
 // *** File Structuring ***
